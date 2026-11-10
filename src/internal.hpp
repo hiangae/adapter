@@ -45,7 +45,9 @@
 
 #define SHUT_RDWR SD_BOTH
 typedef int socklen_t;
-#define snprintf _snprintf
+// NOTE: removed '#define snprintf _snprintf' — modern UCRT (Windows SDK 10+)
+// declares snprintf as a real function and its stdio.h fires #error C1189 if
+// it is macro-redefined. Native snprintf is C99-conformant, so no shim needed.
 #define strdup _strdup
 #define stricmp _stricmp
 #define strdup _strdup
